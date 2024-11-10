@@ -1,0 +1,14 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    padding: 1rem 0;
+}
+
+.footer-text {
+    color: white;
+    font-size: 0.9rem;
+    margin: 0;
+}
