@@ -3,7 +3,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import FacilityCard from './FacilityCard';
 import BookingForm from './BookingForm';
-import Footer from './Footer'; // Import the Footer component
 
 const Facilities = ({ user }) => {
     const [facilities, setFacilities] = useState([]);
@@ -23,7 +22,7 @@ const Facilities = ({ user }) => {
         });
     }, []);
 
-    const handleBooking = (facilityId, startTime, endTime) => {
+    const handleBooking = (facilityId, facilityName, startTime, endTime) => { // Add facilityName as a parameter
         if (!user || !user.googleId) {
             toast.error('Please log in to book a facility.');
             return;
@@ -33,6 +32,7 @@ const Facilities = ({ user }) => {
         axios.post('http://localhost:8000/bookings', {
             userId: user.googleId,
             facilityId,
+            facilityName,  // Include facilityName in the POST data
             startTime,
             endTime
         }, {
@@ -51,15 +51,9 @@ const Facilities = ({ user }) => {
     };
 
     return (
-        <div
-            className="container px-8 py-8 min-h-screen"
-            style={{
-                background: 'linear-gradient(180deg, #808080, #000000)', // Grey to black gradient
-                color: 'white' // Font color set to white
-            }}
-        >
-            <h2 className="text-2xl font-bold mb-4 mt-20 text-white">Available Facilities</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="container mx-8 my-8 ">
+            <h2 className="text-2xl font-bold mb-4 mt-20">Available Facilities</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {facilities.map(facility => (
                     <FacilityCard
                         key={facility._id}
@@ -76,8 +70,6 @@ const Facilities = ({ user }) => {
                     onClose={() => setSelectedFacility(null)}
                 />
             )}
-
-            <Footer /> {/* Add Footer here */}
         </div>
     );
 };
