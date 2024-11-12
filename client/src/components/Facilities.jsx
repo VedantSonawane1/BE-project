@@ -51,8 +51,14 @@ const Facilities = ({ user }) => {
     };
 
     return (
-        <div className="container mx-8 my-8 ">
-            <h2 className="text-2xl font-bold mb-4 mt-20">Available Facilities</h2>
+        <div 
+            className="container mx-auto my-auto min-h-screen"
+            style={{
+                background: 'linear-gradient(180deg, #808080, #000000)', // Grey to black gradient
+                color: 'white' // Set font color to white
+            }}
+        >
+            <h2 className="text-2xl font-bold pb-4 pt-20">Available Facilities</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {facilities.map(facility => (
                     <FacilityCard
